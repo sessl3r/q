@@ -64,6 +64,10 @@ preexec_invoke_exec () {
         REG=${BASH_REMATCH:1}
         ARGS=${BUFFER:${#BASH_REMATCH}}
 
+	if ! /usr/bin/which $Q_COMMAND; then
+		return 0
+	fi
+
         # If called without register, show help
         if [[ $REG == "" ]]; then
             echo "q - registers for zsh"
